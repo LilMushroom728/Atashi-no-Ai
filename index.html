@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atashi no Ai ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffccff; /* Light pink background */
+            font-family: Arial, sans-serif; /* Default font */
+            overflow: hidden; /* Prevent scrolling */
+        }
+        .modal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background-color: white;
+            border: 1px solid #ff66b2;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            width: 500px; /* Wider width for landscape */
+            height: 200px; /* Adjust height for landscape */
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            justify-content: center; /* Center content vertically */
+            align-items: center; /* Center content horizontally */
+        }
+        h1 {
+            font-family: 'Dancing Script', cursive; /* Use the fancy font for the question */
+            color: #ff66b2; /* Pink heading */
+        }
+        p {
+            font-family: 'Arial', sans-serif; /* Keep paragraph text readable */
+        }
+        .container {
+            text-align: center;
+            background-color: white; /* White background for the container */
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff66b2; /* Pink button color */
+            color: white; /* White text */
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #ff3385; /* Darker pink on hover */
+        }
+        .movable {
+            position: relative;
+            transition: transform 0.2s ease; /* Smooth transition for movement */
+        }
+        .lovely-title {
+            font-family: 'Dancing Script', cursive; /* Use the same lovely font */
+            font-size: 48px; /* Increase font size */
+            color: #ff007f; /* Pink color for the text */
+            text-align: center; /* Center the text */
+            margin-top: 20px; /* Add some margin */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Add shadow for a lovely effect */
+        }
+        #gallery {
+            display: none; /* Initially hide gallery */
+            margin: 20px auto;
+            max-width: 1080px; /* Set maximum width for the gallery */
+        }
+        .image-container {
+            display: flex;
+            justify-content: flex-start; /* Align image to the left */
+            align-items: flex-start; /* Align image to the top */
+            height: 90vh; /* Set height to 90% of viewport height */
+            margin-left: -70%; /* Adjusted to shift more to the left */
+            padding-top: 20px; /* Add padding at the top */
+            position: relative; /* Enable positioning */
+        }
+        .image-container img {
+            max-width: 100%; /* Make image responsive */
+            max-height: 90vh; /* Limit height to 90% of viewport height */
+            border-radius: 8px; /* Rounded corners for image */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <p>Nag enjoy ako getting to know you day by day, and every moment na magkasama tayo e lagi akong napapasmile. Kita mo naman. You bring me so much joy sa buhay ko, and I can't help na ma-feel na there's something special between us po. I’d love to take this to the next level and officially ask you.</p>
+            <button id="continue">Continue</button>
+        </div>
+    </div>
+    <div class="container" id="container" style="display: none;">
+        <h1>Lynn Margaret Will you be my Girlfriend?</h1>
+        <button id="yes">Yes!</button>
+        <button id="no" class="movable">No?</button>
+    </div>
+    <div id="gallery">
+        <h2 class="lovely-title">I LOVE YOU ❤️❤️❤️</h2>
+        <div class="image-container" id="image-container">
+            <img src="Collage.png" alt="Image 1">
+        </div>
+    </div>
+
+    <audio id="background-audio" loop>
+        <source src="10cm – Spring Snow 봄눈 [Lovely Runner OST Part 8]_16-10-24_00-42-32-495.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        const noButton = document.getElementById('no');
+        const modal = document.getElementById('modal');
+        const continueButton = document.getElementById('continue');
+        const container = document.getElementById('container');
+        const gallery = document.getElementById('gallery');
+        let countdown;
+        let timeLeft = 3;
+
+        // Show the modal when the page loads
+        window.onload = () => {
+            modal.style.display = 'flex';
+        };
+
+       // Function to move the "No" button randomly
+       function moveButton() {
+            const randomX = Math.random() * 500 - 300; // Random x position
+            const randomY = Math.random() * 500 - 300; // Random y position
+            noButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        }
+
+        // Function to handle "No" button click
+        function handleNoClick() {
+            noButton.textContent = "Are you sure?";
+            clearInterval(countdown);
+            timeLeft = 3;
+            updateCountdown();
+        }
+
+        // Function to update the countdown
+        function updateCountdown() {
+            countdown = setInterval(() => {
+                if (timeLeft > 0) {
+                    noButton.textContent = `Are you sure? (${timeLeft})`;
+                    timeLeft--;
+                } else {
+                    clearInterval(countdown);
+                    noButton.textContent = "No";
+                }
+            }, 1000);
+        }
+
+        // Continue button to close the modal and show the main question
+        continueButton.addEventListener('click', () => {
+            modal.style.display = 'none';
+            container.style.display = 'block'; 
+
+            const audio = document.getElementById('background-audio');
+            audio.volume = 0.1; // Set volume to 100%
+            audio.play().catch(error => {
+                console.error("Audio playback failed:", error);
+            });
+        });
+
+        // Add event listener to the "No" button
+        noButton.addEventListener('mouseenter', moveButton);
+        noButton.addEventListener('click', handleNoClick);
+
+        // Add event listener for the "Yes" button
+        document.getElementById('yes').addEventListener('click', () => {
+            gallery.style.display = 'block'; 
+
+            const images = document.querySelectorAll('#gallery img');
+            images.forEach(img => {
+                const randomX = Math.random() * (window.innerWidth - 100);
+                const randomY = Math.random() * (window.innerHeight - 100);
+                img.style.transform = `translate(${randomX}px, ${randomY}px)`; 
+            });
+
+            alert("YAHOOOOOOOOOO!!!!!! I'm so happy you pressed yes po!(DI DAHIL NAPILITAN KA LANG KASI DI MO MAPRESS YUNG NO😛)");
+        });
+    </script>
+</body>
+</html>
